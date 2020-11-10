@@ -5,8 +5,6 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=64000
-#SBATCH --mail-user=benmoran@stanford.edu
-#SBATCH -p schumer,hns,normal
 #SBATCH -o slurm-%x.out
 
 module load python/2.7.13
