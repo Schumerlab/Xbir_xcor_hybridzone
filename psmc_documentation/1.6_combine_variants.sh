@@ -10,11 +10,6 @@
 rm variant_calls.list
 for i in $(cat xbir-10x_chromlist.list); do echo cor_5587-MS-0004_mapped_bir_$i.g.vcf.gz >> variant_calls.list ; done
 
-java -jar GenomeAnalysisTK.jar \
--T CombineVariants \
--R xiphophorus_birchmanni_10x_12Sep2018_yDAA6.fasta \
---variant variant_calls.list \
--o cor_5587-MS-0004_mapped_bir.g.vcf \
--genotypeMergeOptions UNIQUIFY
+bcftools concat -o cor_5587-MS-0004_mapped_bir_allchr.g.vcf -f variant_calls.list
 
 echo done
