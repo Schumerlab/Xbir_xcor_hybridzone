@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y \
  && mkdir /tools
 
 
-#install 
+#install
 RUN git clone https://github.com/ucdavis-bioinformatics/proc10xG.git \
  && cd proc10xG \
  && git reset --hard 6de559a3a03997ba6829569ce4f6b1afe3744eb5 \
@@ -67,10 +67,19 @@ RUN wget -q https://github.com/samtools/htslib/releases/download/\
  && make install \
  && rm -r /htslib-1.8*
 
+RUN wget -q https://github.com/samtools/bcftools/releases/download/\
+1.8/bcftools-1.8.tar.bz2 \
+ && tar -xjf bcftools-1.8.tar.bz2 \
+ && cd /bcftools-1.8 \
+ && ./configure \
+ && make -j \
+ && make install \
+ && rm -r /bcftools-1.8*
+
 #Download Picard tools
 RUN wget -q https://sourceforge.net/projects/picard/files/picard-tools/1.118/picard-tools-1.118.zip/download -O picard-tools-1.118.zip \
-  && unzip -q picard-tools-1.118.zip \
-  && rm picard-tools-1.118.zip
+ && unzip -q picard-tools-1.118.zip \
+ && rm picard-tools-1.118.zip
 
  #Install gsutil (needed to get GATK 3)
  RUN wget -q https://storage.googleapis.com/pub/gsutil.tar.gz \
