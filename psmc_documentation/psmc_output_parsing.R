@@ -69,7 +69,9 @@ final_psmc <- ggplot(conservative_psmc, aes(x = YBP, y = Ne_e4, group = indiv, c
   theme_cowplot() +
   theme(panel.border = element_rect(colour = "black"),
         axis.line = element_blank(),
-        legend.position = c(0.1, 0.75)) +
+        legend.position = c(0.1, 0.75),
+        legend.title = element_text(size = 18),
+        legend.text = element_text(size = 14)) +
   xlab("Years Before Present") +
   ylab(expression(paste("Effective Population Size (×",10^4,")"))) +
   annotation_logticks(sides = "b") +
@@ -80,8 +82,8 @@ final_psmc <- ggplot(conservative_psmc, aes(x = YBP, y = Ne_e4, group = indiv, c
   geom_step(data = conservative_boot, aes(group = rep), alpha = 0.2) +
   geom_step(size = 1.25)
 final_psmc
-ggsave("cor_bir_psmc_truncated_RGQ.png", plot = final_psmc,
-       device = "png", units = "in", width = 8.38, height = 6.49)
+ggsave("cor_bir_psmc_truncated_RGQ.pdf", plot = final_psmc,
+       device = "pdf", units = "in", width = 5.59, height = 4.33)
 
 ggplot(psmc_samps, aes(x = YBP, y = Ne_e4, group = indiv, color = Population)) +
   theme_cowplot() +
